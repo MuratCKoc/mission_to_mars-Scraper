@@ -27,8 +27,6 @@ news_paragraphs[1].get_text()
 
 * Visit the url for JPL Featured Space Image [here](https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars).
 * Use splinter to navigate the site and find the image url for the current Featured Mars Image and assign the url string to a variable called `featured_image_url`.
-* Make sure to find the image url to the full size `.jpg` image.
-* Make sure to save a complete url string for this image.
 
 ```python
 # Example:
@@ -38,6 +36,12 @@ featured_image_url = 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA1
 ### Mars Facts
 
 * Visit the Mars Facts webpage [here](https://space-facts.com/mars/) and use Pandas to scrape the table containing facts about the planet including Diameter, Mass, etc.
+
+```python
+df_list = pd.read_html(facts_url, match='Mars - Earth Comparison',index_col=0)
+df_list[0]
+```
+
 * Use Pandas to convert the data to a HTML table string.
 
 ### Mars Hemispheres
@@ -70,22 +74,8 @@ Use MongoDB with Flask templating to create a new HTML page that displays all of
 * Create a root route `/` that will query your Mongo database and pass the mars data into an HTML template to display the data.
 * Create a template HTML file called `index.html` that will take the mars data dictionary and display all of the data in the appropriate HTML elements. Use the following as a guide for what the final product should look like, but feel free to create your own design.
 
-![final_app_part1.png](Images/final_app_part1.png)
-![final_app_part2.png](Images/final_app_part2.png)
-
----
-
-## Step 3 - Submission
-
-To submit your work to BootCampSpot, create a new GitHub repository and upload the following:
-
-1. The Jupyter Notebook containing the scraping code used.
-2. Screenshots of your final application.
-3. Submit the link to your new repository to BootCampSpot.
-4. Ensure your repository has regular commits (i.e. 20+ commits) and a thorough README.md file
 
 ## Common Erros
 
 * ChromeDriver supports another Chrome version. [Download the right one](https://chromedriver.chromium.org/downloads)
-* Use Pymongo for CRUD applications for your database. For this homework, you can simply overwrite the existing document each time the `/scrape` url is visited and new data is obtained.
-* Use Bootstrap to structure your HTML template.
+* Use Pymongo for CRUD applications for your database.
