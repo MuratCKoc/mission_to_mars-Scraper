@@ -44,6 +44,10 @@ df_list[0]
 
 * Use Pandas to convert the data to a HTML table string.
 
+```python
+facts_html = df_list[0].to_html('facts_html.html',index=False)
+```
+
 ### Mars Hemispheres
 
 * Visit the USGS Astrogeology site [here](https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars) to obtain high resolution images for each of Mar's hemispheres.
@@ -52,13 +56,35 @@ df_list[0]
 * Append the dictionary with the image url string and the hemisphere title to a list. This list will contain one dictionary for each hemisphere.
 
 ```python
-# Example:
-hemisphere_image_urls = [
-    {"title": "Valles Marineris Hemisphere", "img_url": "..."},
-    {"title": "Cerberus Hemisphere", "img_url": "..."},
-    {"title": "Schiaparelli Hemisphere", "img_url": "..."},
-    {"title": "Syrtis Major Hemisphere", "img_url": "..."},
-]
+# Generate urls to find the full size image url
+browser.visit(base_mars_url.rstrip(base_mars_url[-1]) + items_[i].a["href"])
+```
+
+```python
+# Visit the link find the full size image jpg
+browser.links.find_by_partial_href("full.jpg")[0]['href']}
+```
+
+```python
+# Append the each "title":"img_url" dictionary to the list:
+mars_hemispheres_list = []
+for i in range(len(items_)):
+    # Visit links
+    browser.visit(base_mars_url.rstrip(base_mars_url[-1]) + items_[i].a["href"])
+    # Find the full image link and append it to list
+    mars_hemispheres_list.append({"title": items_[i].h3.text,
+    "img_url" : browser.links.find_by_partial_href("full.jpg")[0]['href']})
+mars_hemispheres_list
+
+[{'title': 'Cerberus Hemisphere Enhanced',
+  'img_url': 'https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg'},
+ {'title': 'Schiaparelli Hemisphere Enhanced',
+  'img_url': 'https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg'},
+ {'title': 'Syrtis Major Hemisphere Enhanced',
+  'img_url': 'https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg'},
+ {'title': 'Valles Marineris Hemisphere Enhanced',
+  'img_url': 'https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg'}]
+
 ```
 
 ---
