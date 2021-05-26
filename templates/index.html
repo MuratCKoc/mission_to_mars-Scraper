@@ -1,0 +1,102 @@
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Mission to Mars</title>
+      <!-- Local Assets-->
+      <link rel="stylesheet" href="style.css">
+
+
+      <!-- CDN -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Source Code Pro" rel="stylesheet">
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+      <section class="container-fluid px-5 py-5">
+          <!-- Top Bar-->
+          <div id="topbar" class="d-none d-flex align-items-right fixed-top">
+              <div class="p-2 container d-flex">
+                  <div class="contact-info mr-auto">
+                      <i class="fas fa-envelope-square"></i> <a
+                          href="mailto:muratcagrikoc@gmail.com">muratcagrikoc@gmail.com</a>
+                  </div>
+                  <div class="social-links">
+                      <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+                      <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
+                      <a href="#" class="github"><i class="fab fa-github"></i></a>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Main scrape button-->
+      <section class="container">
+          <div class="jumbotron text-center">
+              <h1>Mission to Mars</h1>
+              <form action="/" method='GET'>
+                  <a href='/scrape' class='btn btn-info'>Scrape New Data</a>
+              </form>
+          </div>
+      </section>
+      <section class="container-fluid px-3 py-3">
+          {% for news in mars_mission.news %}
+          <div class="row">
+              <h3>{{ news["news_title"] }}</h3>
+              <p>{{ news["news_paragraph"] }}
+                  <a href="{{ news["news_url"] }}">read more</a></p>
+          </div>
+          {% endfor %}
+      </section>
+
+      <!-- Featured Image and Mars Facts-->
+      <section class="container-fluid px-3 py-3">
+          <div class="row">
+              <div class="col-sm-9 mx-sm-auto">
+                  <div class="card">
+                      <h2 class="card-header bg-transparent ">Featured Mars Image - {{ mars_mission.fimage.title }}</h2>
+
+                      <div class="card-body container">
+
+                          <div>
+                              <img class="card-img " src="{{ mars_mission.fimage.image_url }}"
+                                  alt="Featured Mars Image - {{ mars_mission.fimage.title }} ">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Mars Facts-->
+              <div class="col-sm-3 mx-sm-auto">
+                  <div class="card">
+                      <h2 class="card-header bg-transparent ">Mars Facts </h2>
+                      <div class="card-body container">
+                          {{ mars_mission.facts | safe}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      
+      <!-- Hemispheres -->
+      <section class="container-fluid px-3 py-3">
+          <div class="row">
+              {% for hemi in mars_mission.hemisphere %}
+              <div class="col-sm-6 mx-sm-auto">
+                  <div class="card-header bg-transparent">
+                      <h2 class="card-title text-center">{{ hemi["img_title"] }}</h2>
+                      <div class="card-body container">
+                          <img class="card-img" src="{{ hemi["img_url"] }}" alt="{{ hemi["img_title"] }}">
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+      </section> <!-- Javascripts -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+
+  </html>

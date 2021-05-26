@@ -1,0 +1,127 @@
+/*-- Background --*/
+body {
+    background-color: rgb(237,237,237);
+
+}
+
+/*--- Top Bar ---*/ 
+#topbar {
+    background: rgb(243, 4, 4);
+    height: 40px;
+    font-size: 14px;
+    transition: all 0.5s;
+    color: #fff;
+}
+
+#topbar.topbar-scrolled {
+    top: -40px;
+}
+
+#topbar .contact-info a {
+    line-height: 1;
+    color: #fff;
+    transition: 0.3s;
+}
+
+#topbar .contact-info a:hover {
+    text-decoration: underline;
+}
+
+#topbar .contact-info i {
+    padding-right: 4px;
+    margin-left: 15px;
+}
+
+#topbar .contact-info i:first-child {
+    margin-left: 0;
+}
+
+#topbar .social-links a {
+    color: rgba(255, 255, 255, 0.6);
+    padding-left: 15px;
+    display: inline-block;
+    line-height: 1px;
+    transition: 0.3s;
+}
+
+#topbar .social-links a:hover {
+    color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+    background: #fff;
+    transition: all 0.5s;
+    z-index: 997;
+    padding:0px 5px 0px 2px;
+    top: 40px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+#header.header-scrolled {
+    top: 0;
+    padding: 15px;
+}
+
+/*--- NavBar ---*/
+
+.navbar-brand{
+    color: #fce8e8 !important;
+    background: rgb(243, 4, 4);
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: .2rem;
+    font-size: 60px;
+    font-weight: 700
+}
+.navbar {
+    background-color: #fff;
+}
+
+
+/*-- Footer --*/
+#footer {
+    padding: 0 0 30px 0;
+    color: #fff;
+    font-size: 14px;
+    background: rgb(243, 4, 4);
+    text-align: center;
+}
+
+#footer .copyright {
+    text-align: center;
+    float: left;
+}
+
+/*-- Cards --*/
+.card {
+    padding: 0px !important;
+    background-color: #fff !important;
+}
+
+.card-title{
+    padding: 20px 5px 10px 5px;
+    font-weight: 500;
+    font: 2rem;
+    color: #f30404;
+    text-align: center;
+}
+
+.card-liner{
+    padding-left: 5px;
+}
+
+.card-body{
+    color: black;
+    padding: 15px 5px 10px 5px !important;
+    
+}
+
+h4 .card-title{
+    text-align: center !important;
+}
+
+.active{
+    border: solid 3px #f30404;
+}
