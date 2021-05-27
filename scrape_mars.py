@@ -25,26 +25,20 @@ def scrape_data():
 
     html = browser.html
     news_ = soup(html, 'html.parser')
-    print(news_)
-
 
     slide_elem = news_.select_one('ul.item_list li.slide')
     slide_elem
 
-
     # Find the parent element of title
     slide_elem.find("div", class_="content_title")
-
 
     # Use the parent element to find the first 'a' tag and save it as `news_title`
     news_title = slide_elem.find("div", class_="content_title").get_text()
     news_title
 
-
     # Find paragraph related with the article
     news_p = slide_elem.find("div", class_="article_teaser_body").get_text()
     news_p
-
 
     # Putting all together into For loop to scrape all news and paragraphs
     news_titles = news_.find_all('div', class_='content_title')
@@ -52,11 +46,9 @@ def scrape_data():
     news_titles.pop(0)
     news_titles[0]
 
-
     # Find paragraphs and store into a list
     news_paragraphs = news_.find_all('div', class_='article_teaser_body')
     news_paragraphs[1].get_text()
-
 
     # Create a list of news and paragraphs
     news_list = []
@@ -71,15 +63,12 @@ def scrape_data():
     browser.visit(base_image_url)
     sleep(2)
 
-
     browser.click_link_by_partial_href('/images')
     sleep(2)
-
 
     browser.find_link_by_partial_href("original_images").click()
     sleep(1)
     featured_image_url = browser.url
-    print(featured_image_url)
 
 
     # MARS FACTS
@@ -87,21 +76,11 @@ def scrape_data():
     browser.visit(facts_url)
     sleep(2)
 
-
     # Scrape HTML table into list of dataframes
     df_list = pd.read_html(facts_url, match='Mars - Earth Comparison')
-    df_list[0]
-
-
-    facts_dicts = []
-    for index, row in df_list[0].iterrows():
-        print(row[2])
-
 
     # Export to Html
     facts_html = df_list[0].to_html('facts_html.html', index=False)
-    print(facts_html)
-
 
     # Visist Mars webpage
     base_mars_url = 'https://astrogeology.usgs.gov/'
@@ -109,16 +88,9 @@ def scrape_data():
     browser.visit(url_s)
     sleep(1)
 
-
     mars_html = browser.html
     mars_ = soup(mars_html, 'html.parser')
     items_ = mars_.find_all('div', class_='item')
-
-
-    print(items_[0].a['href'])
-    print(items_[0].h3.text)
-    range(len(items_))
-
 
     # Create a list of hemispheres' titles and full size images
     mars_hemispheres_list = []
@@ -129,7 +101,6 @@ def scrape_data():
         # Find the full image link and append it to list
         mars_hemispheres_list.append({"title": items_[i].h3.text,
                                     "img_url": browser.links.find_by_partial_href("full.jpg")[0]['href']})
-    print(mars_hemispheres_list)
 
     browser.quit()
 
@@ -140,5 +111,3 @@ def scrape_data():
 
     print(aq)
     return aq
-
-scrape_data()
