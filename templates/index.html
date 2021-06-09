@@ -45,9 +45,9 @@
       <section class="container-fluid px-3 py-3">
           {% for news in mars_mission.news %}
           <div class="row">
-              <h3>{{ news["news_title"] }}</h3>
-              <p>{{ news["news_paragraph"] }}
-                  <a href="{{ news["news_url"] }}">read more</a></p>
+              <h3>{{ news["news.title"] }}</h3>
+              <p>{{ news["news.paragraph"] }}</p>
+                  <!-- <a href="{{ news["news.url"] }}">read more</a></p> -->
           </div>
           {% endfor %}
       </section>
@@ -62,10 +62,10 @@
                       <div class="card-body container">
 
                           <div>
-                              <img class="card-img " src="{{ mars_mission.fimage.featured_imag_url }}"
+                              <img class="card-img " src="{{ mars_mission.fimage.url }}"
                                   alt="Featured Mars Image - {{ mars_mission.fimage.title }} ">
                           </div>
-                      </div>
+                      </div> 
                   </div>
               </div>
               <!-- Mars Facts-->
@@ -73,7 +73,7 @@
                   <div class="card">
                       <h2 class="card-header bg-transparent ">Mars Facts </h2>
                       <div class="card-body container">
-                          {{ mars_mission.facts | safe}}
+                          {{ mars_mission.comparison | safe}}
                       </div>
                   </div>
               </div>
@@ -86,9 +86,9 @@
               {% for hemi in mars_mission.hemisphere %}
               <div class="col-sm-6 mx-sm-auto">
                   <div class="card-header bg-transparent">
-                      <h2 class="card-title text-center">{{ hemi["img_title"] }}</h2>
+                      <h2 class="card-title text-center">{{ hemi["title"] }}</h2>
                       <div class="card-body container">
-                          <img class="card-img" src="{{ hemi["img_url"] }}" alt="{{ hemi["img_title"] }}">
+                          <img class="card-img" src="{{ hemi["img_url"] }}" alt="{{ hemi["title"] }}">
                       </div>
                   </div>
               </div>
