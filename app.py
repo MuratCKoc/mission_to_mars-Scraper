@@ -11,10 +11,18 @@ mongo = PyMongo(app, uri="mongodb+srv://"+username+":"+password +
 
 @app.route('/')
 def index():
-    mars_data = mongo.db.find_one()
+    mars_data = {}
+    collections_ = mongo.db.list_collection_names()
+    #print(mars_data)
+    print(collections_)
+    print(mongo.db)
     print(mongo.db.list_collection_names())
-    print(mars_data)
-    print(mars_data.list_collection_names())
+    for col_ in collections_:
+        mars_data[col_] = list(mongo.db[col_].find())
+    #mars_data['news'] = list(mongo.db['news'].find())
+    print(mars_data.keys())
+    print(mars_data['fimage'][0]['url'])
+    #print(mars_data.news)
     return render_template('index.html', mars_mission=mars_data)
 
 
@@ -24,7 +32,7 @@ def data_scrape():
     mars_data = scrape_data()
     print(mars_data)
     # Update Mongo database
-    mongo.db.update({}, mars_data, upsert=True)
+    #mongo.db.update({}, mars_data, upsert=True)
     # Redirect to index
     return redirect("/", code=302)
 
