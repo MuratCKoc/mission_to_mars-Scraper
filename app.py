@@ -21,7 +21,7 @@ def index():
         mars_data[col_] = list(mongo.db[col_].find())
     #mars_data['news'] = list(mongo.db['news'].find())
     print(mars_data.keys())
-    print(mars_data['fimage'][0]['url'])
+    print(mars_data['news'][0]['title'])
     #print(mars_data.news)
     return render_template('index.html', mars_mission=mars_data)
 

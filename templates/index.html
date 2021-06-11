@@ -43,10 +43,10 @@
           </div>
       </section>
       <section class="container-fluid px-3 py-3">
-          {% for news in mars_mission.news %}
+          {% for news in mars_mission['news'] %}
           <div class="row">
-              <h3>{{ news["news.title"] }}</h3>
-              <p>{{ news["news.paragraph"] }}</p>
+              <h3>{{ news["title"] }}</h3>
+              <p>{{ news["paragraph"] }}</p>
                   <!-- <a href="{{ news["news.url"] }}">read more</a></p> -->
           </div>
           {% endfor %}
