@@ -73,7 +73,7 @@
                   <div class="card">
                       <h2 class="card-header bg-transparent ">Mars Facts </h2>
                       <div class="card-body container">
-                          {{ mars_mission.comparison | safe}}
+                          {{ mars_mission['comparison'] | safe}}
                       </div>
                   </div>
               </div>
@@ -83,12 +83,12 @@
       <!-- Hemispheres -->
       <section class="container-fluid px-3 py-3">
           <div class="row">
-              {% for hemi in mars_mission.hemisphere %}
+              {% for hemi in mars_mission['mars_hemispheres'] %}
               <div class="col-sm-6 mx-sm-auto">
                   <div class="card-header bg-transparent">
                       <h2 class="card-title text-center">{{ hemi["title"] }}</h2>
                       <div class="card-body container">
-                          <img class="card-img" src="{{ hemi["img_url"] }}" alt="{{ hemi["title"] }}">
+                          <img class="card-img" src="{{ hemi['img_url'] }}" alt="{{ hemi['title'] }}">
                       </div>
                   </div>
               </div>
